@@ -2,7 +2,7 @@
 
 ## Python Benchmarks
 
-Base branch: [`base-python`](https://github.com/linearzig/benchmark-ai-code-review/tree/python-base) cloned from <https://github.com/wsvincent/lithium>
+Base branch: [`base-python`](https://github.com/linearzig/benchmark-ai-code-review/tree/base-python) cloned from <https://github.com/wsvincent/lithium>
 
 - **Bug 01: Off-by-one error in a loop**
   - [LinearB: bug01-python-offbyone-linearb](https://github.com/linearzig/benchmark-ai-code-review/tree/bug01-python-offbyone-linearb)
@@ -15,7 +15,7 @@ Base branch: [`base-python`](https://github.com/linearzig/benchmark-ai-code-revi
 
 ## JavaScript Benchmarks
 
-Base branch: [`base-js`](https://github.com/linearzig/benchmark-ai-code-review/tree/js-base) cloned from <https://github.com/sahat/hackathon-starter>
+Base branch: [`base-js`](https://github.com/linearzig/benchmark-ai-code-review/tree/base-js) cloned from <https://github.com/sahat/hackathon-starter>
 
 - **Bug 05: Unescaped user input injected into HTML without sanitization**
   - LinearB: bug05-js-unescapedhtml-linearb[](https://github.com/linearzig/benchmark-ai-code-review/tree/bug05-js-unescapedhtml-linearb)
