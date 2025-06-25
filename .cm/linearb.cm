@@ -1,0 +1,14 @@
+manifest:
+  version: 1.0
+
+automations:
+  linearb_ai_review:
+    on:
+      - pr_created
+      - commit
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
+      - {{ pr.description | includes(term='@linearb') or (pr.comments | match(attr='content', term='Hey LinearB!') | some) }}
+    run:
+      - action: code-review@v1
