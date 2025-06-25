@@ -9,6 +9,6 @@ automations:
     if:
       - {{ not pr.draft }}
       - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
-      - {{ pr.description | includes(term='@linearb') or (pr.comments | match(attr='content', term='Hey LinearB!') | some) }}
+      - {{ pr.description | includes(term='@linearb') or (pr.comments | match(attr='content', term='Hey, LinearB!') | some) }}
     run:
       - action: code-review@v1
