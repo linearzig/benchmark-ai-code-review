@@ -20,3 +20,7 @@ class CustomUserChangeForm(UserChangeForm):
             "email",
             "username",
         )
+
+    def get_email_prefix_chars(self, n):
+        user = self.instance
+        return user.get_email_prefix_chars(n)
