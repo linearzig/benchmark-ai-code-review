@@ -68,6 +68,7 @@ const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const aiController = require('./controllers/ai');
 const contactController = require('./controllers/contact');
+const guestbookController = require('./controllers/guestbook');
 
 /**
  * API keys and Passport configuration.
@@ -322,6 +323,12 @@ app.get('/auth/quickbooks', passport.authorize('quickbooks'));
 app.get('/auth/quickbooks/callback', passport.authorize('quickbooks', { failureRedirect: '/auth/failure' }), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
+
+/**
+ * Guestbook routes.
+ */
+app.get('/guestbook', guestbookController.getGuestbook);
+app.post('/guestbook', guestbookController.postGuestbook);
 
 /**
  * Error Handler.
