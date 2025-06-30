@@ -1,8 +1,9 @@
 const crypto = require('crypto');
 const bcrypt = require('@node-rs/bcrypt');
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
   {
     email: { type: String, unique: true, required: true },
     password: String,
@@ -41,6 +42,9 @@ const userSchema = new mongoose.Schema(
       website: String,
       picture: String,
     },
+
+    friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    interests: [{ type: String }],
   },
   { timestamps: true },
 );
