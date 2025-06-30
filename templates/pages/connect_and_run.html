@@ -1,0 +1,45 @@
+{% extends '_base.html' %} {% block title %}Connect & Run Script{% endblock %}
+{% block content %}
+<h2>Connect & Run Script</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="server" class="form-label">Server Address</label>
+    <input
+      type="text"
+      class="form-control"
+      id="server"
+      name="server"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="username" class="form-label">SSH Username</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      name="username"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="script" class="form-label">Script Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="script"
+      name="script"
+      required
+    />
+    <div class="form-text">
+      Script will be run as /opt/scripts/&lt;script&gt;.sh
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Connect & Run</button>
+</form>
+{% if executed %}
+<div class="alert alert-success mt-3">
+  <strong>Executed command:</strong> <code>{{ cmd }}</code>
+</div>
+{% endif %} {% endblock %}
