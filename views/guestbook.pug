@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Guestbook
+  form(action="/guestbook" method="POST")
+    textarea(name="message" required)
+    br
+    button(type="submit") Sign Guestbook
+  ul
+    each entry in entries
+      li!= entry.message 
