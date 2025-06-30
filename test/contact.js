@@ -150,4 +150,34 @@ describe('Contact Controller', () => {
         });
     });
   });
+
+  describe('Bulk contact form tests', () => {
+    const testUsers = [
+      { name: 'Alice', email: 'alice@example.com', message: 'Hello from Alice' },
+      { name: 'Bob', email: 'bob@example.com', message: 'Hello from Bob' },
+      { name: 'Charlie', email: 'charlie@example.com', message: 'Hello from Charlie' },
+    ];
+
+    for (var i = 0; i < testUsers.length; i++) {
+      it(`should send email for ${testUsers[i].name}`, function(done) {
+        request(app)
+          .post('/contact')
+          .type('form')
+          .send({
+            _csrf: 'testcsrf',
+            name: testUsers[i].name,
+            email: testUsers[i].email,
+            message: testUsers[i].message,
+            'g-recaptcha-response': 'token',
+          })
+          .expect(302)
+          .expect('Location', '/contact')
+          .end((err) => {
+            if (err) return done(err);
+            expect(sendMailStub.called).to.be.true;
+            done();
+          });
+      });
+    }
+  });
 });
