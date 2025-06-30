@@ -7,15 +7,8 @@ endblock title %} {% block content %}
     alt="Lithium logo"
   />
   <p class="lead">A Django starter project with batteries.</p>
+  <p>
+    <a href="/special-score/?x=12&y=5">Try the new Special Score feature!</a>
+  </p>
 </div>
-
-{% if notes %}
-<div class="alert alert-info">
-  <strong>Notes:</strong>
-  <ul>
-    {% for note in notes %}
-    <li>{{ note }}</li>
-    {% endfor %}
-  </ul>
-</div>
-{% endif %} {% endblock content %}
+{% endblock content %}
