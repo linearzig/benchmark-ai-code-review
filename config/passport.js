@@ -17,13 +17,23 @@ const validator = require('validator');
 
 const User = require('../models/User');
 
+function sanitizeUserForSession(user) {
+  const { password, tokens, ...safeUser } = user;
+  return JSON.parse(JSON.stringify(safeUser));
+}
+
+passport.logUserSerialization = function(user) {
+  console.log(`[Passport] Serializing user with ID: ${user.id || user._id}`);
+};
+
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  passport.logUserSerialization(user);
+  done(null, sanitizeUserForSession(user));
 });
 
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (obj, done) => {
   try {
-    return done(null, await User.findById(id));
+    return done(null, obj);
   } catch (error) {
     return done(error);
   }
@@ -333,7 +343,7 @@ passport.use(
         }
         const user = new User();
         // X will not provide an email address.  Period.
-        // But a person’s X username is guaranteed to be unique
+        // But a person's X username is guaranteed to be unique
         // so we can "fake" a X email address as follows:
         user.email = `${profile.username}@x.com`;
         user.x = profile.id;
